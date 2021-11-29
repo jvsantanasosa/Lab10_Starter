@@ -14,6 +14,8 @@ body.blue {
   background-color: lightblue;
 }
 
+
+
 body.blue>main {
   background-color: white;
   border-radius: 5px;
@@ -56,6 +58,7 @@ body.blue>header a {
   padding-bottom: 2.5px;
   text-decoration: none;
 }
+
 
 body>header a:hover {
   border-bottom: 2px solid transparent;

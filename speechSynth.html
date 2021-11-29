@@ -11,6 +11,8 @@
   <!-- Main Stylesheet & Scripts -->
   <link rel="stylesheet" href="assets/styles/global.css" />
   <script src="assets/scripts/speechSynth.js" type="module"></script>
+
+  <script src="https://unpkg.com/launchdarkly-js-client-sdk@2"></script>
 </head>
 
 <body>
@@ -22,7 +24,7 @@
   <main>
     <section id="explore">
       <header>
-        <h2>Speech Synthesizer</h2>
+        <h2 id=header-font-size>Speech Synthesizer</h2>
       </header>
       <img src="assets/images/smiling.png" alt="Smiling face" />
       <textarea name="text-to-speak" id="text-to-speak" rows="10" placeholder="Text to speak here"></textarea>
@@ -32,6 +34,24 @@
       <button>Press to Talk</button>
     </section>
   </main>
+
+
+  <script>
+    const randomNum = Math.floor(new Date().getTime() * Math.random());
+    var user = {
+      
+      key: randomNum,
+    };
+
+    var ldclient = LDClient.initialize('61a4388ea8e6530f447d96ad', user);
+  
+    function render() {
+      var shouldShow = ldclient.variation('font-size', false);
+      shouldShow && (document.getElementById("header-font-size").style.fontSize = "3rem");
+    }
+    ldclient.on('ready', render);
+    ldclient.on('change', render);
+  </script>
 </body>
 
 </html>
